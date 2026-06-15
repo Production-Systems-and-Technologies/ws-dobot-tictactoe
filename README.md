@@ -1,0 +1,45 @@
+# Robot Tic-Tac-Toe
+
+Small Dobot Magician tic-tac-toe app with a Tk GUI, plus a calibration/jog tool for setting board points.
+
+## Main programs
+
+- `tictactoe.py`: main GUI game. Supports `PvP`, `PvAI`, and `AivAI`.
+- `jog_cli.py`: terminal jog/calibration tool. Used to capture `calib_points.json`.
+
+## Project structure
+
+- `tictactoe.py`: GUI, game flow, robot task scheduling, mode switching.
+- `helpers/game_logic.py`: tic-tac-toe rules and minimax AI.
+- `helpers/robot_motion.py`: high-level robot motion routines for pick, place, cleanup, and homing.
+- `helpers/load_calibration.py`: loads board and feeder calibration from JSON.
+- `dobot_python/`: low-level Dobot serial protocol wrapper.
+- `calib_points.json`: saved robot positions for pick/place, board corners, and `PRE_HOME`.
+- `assets/`: board and icon images used by the GUI.
+- `documents/`: Dobot manuals and protocol references.
+
+## Run
+
+GUI:
+
+```bash
+python tictactoe.py
+```
+
+Mock mode without hardware:
+
+```bash
+python tictactoe.py --mock
+```
+
+Calibration/jog tool:
+
+```bash
+python jog_cli.py
+```
+
+## Notes
+
+- The GUI reads the port from `--port` or `DOBOT_PORT`.
+- `calib_points.json` should stay in sync with the physical robot setup.
+- The code targets older Python 3.6-style environments, so avoid newer syntax unless it is already supported here.
