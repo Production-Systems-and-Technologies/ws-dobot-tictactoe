@@ -37,9 +37,3 @@ Calibration/jog tool:
 ```bash
 python jog_cli.py
 ```
-
-## Notes
-
-- The GUI reads the port from `--port` or `DOBOT_PORT`.
-- `calib_points.json` should stay in sync with the physical robot setup.
-- The code targets older Python 3.6-style environments, so avoid newer syntax unless it is already supported here.
