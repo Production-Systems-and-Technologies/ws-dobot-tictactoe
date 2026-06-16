@@ -21,8 +21,8 @@ RETRACT_DISTANCE                = 12             # mm straight up after picking/
 PLACE_OFFSET                    = 8              # mm offset for dropping pieces onto board
 POSE_TOL_MM, POSE_POLL_S        = 1.0, 0.05      # mm, s
 AI_AUTO_HOME_EVERY_GAMES        = 10
-MOVEJ_VEL, MOVEJ_ACC            = 400.0, 500.0
-MOVEL_XYZ_VEL, MOVEL_XYZ_ACC    = 120.0, 250.0
+MOVEJ_VEL, MOVEJ_ACC            = 400.0, 450.0
+MOVEL_XYZ_VEL, MOVEL_XYZ_ACC    = 120.0, 300.0
 
 CAL = load_calibration("calib_points.json", place_offset=PLACE_OFFSET)
 PICK_X              = CAL["PICK_X"]
