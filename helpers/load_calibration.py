@@ -68,6 +68,7 @@ def load_calibration(path='calib_points.json', place_offset=8):
         'TTT_CELLS_PICK':  pick_grid,
         'TTT_CELLS_PLACE': place_grid,
     }
-    if 'PRE_HOME' in data:
-        result['PRE_HOME'] = tuple(data['PRE_HOME'])
+    pre_homing = data.get('PRE_HOMING', data.get('PRE_HOME'))
+    if pre_homing is not None:
+        result['PRE_HOMING'] = tuple(pre_homing)
     return result

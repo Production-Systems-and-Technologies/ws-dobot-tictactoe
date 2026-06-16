@@ -15,14 +15,14 @@ from helpers.game_logic import get_winner_and_cells, is_draw, AIPlayer
 # ----------------------------------------------------------- #
 
 PORT                            = "/dev/ttyUSB0"
-BOARD_ORIENTATION               = 270              # 0/90/180/270 used to rotate board mapping       
+BOARD_ORIENTATION               = 0              # 0/90/180/270 used to rotate board mapping
 APPROACH_OFFSET                 = 35             # mm above piece before descending
 RETRACT_DISTANCE                = 12             # mm straight up after picking/placing
 PLACE_OFFSET                    = 8              # mm offset for dropping pieces onto board
 POSE_TOL_MM, POSE_POLL_S        = 1.0, 0.05      # mm, s
-AI_AUTO_HOME_EVERY_GAMES        = 1
+AI_AUTO_HOME_EVERY_GAMES        = 10
 MOVEJ_VEL, MOVEJ_ACC            = 400.0, 500.0
-MOVEL_XYZ_VEL, MOVEL_XYZ_ACC    = 200.0, 200.0
+MOVEL_XYZ_VEL, MOVEL_XYZ_ACC    = 120.0, 250.0
 
 CAL = load_calibration("calib_points.json", place_offset=PLACE_OFFSET)
 PICK_X              = CAL["PICK_X"]
@@ -31,7 +31,7 @@ PICK_O              = CAL["PICK_O"]
 RETURN_O            = CAL["RETURN_O"]
 TTT_CELLS_PICK      = CAL["TTT_CELLS_PICK"]
 TTT_CELLS_PLACE     = CAL["TTT_CELLS_PLACE"]
-PRE_HOME            = CAL.get("PRE_HOME")
+PRE_HOMING          = CAL.get("PRE_HOMING")
 
 BOARD_SCALE = 3  # integer scaling factor for board images (1 = original size)
 
@@ -66,6 +66,10 @@ class MockDobot:
     def move_linear_rel(self, dx, dy, dz, dr, *, wait=False):
         x, y, z, r = self.pose[:4]
         self._set_pose(x + dx, y + dy, z + dz, r + dr)
+
+    def set_motion_params(self, vel, acc, *, queue=False):
+        self.vel = vel
+        self.acc = acc
 
     def set_ptp_coordinate_params(self, xyz_vel, r_vel, xyz_acc, r_acc, *, queue=False):
         self.coord_vel = (xyz_vel, r_vel, xyz_acc, r_acc)
@@ -847,14 +851,14 @@ class TicTacToeGUI(tk.Tk):
             return
 
         self.aivai_games_since_home += 1
-        if PRE_HOME is not None and self.aivai_games_since_home >= AI_AUTO_HOME_EVERY_GAMES:
+        if PRE_HOMING is not None and self.aivai_games_since_home >= AI_AUTO_HOME_EVERY_GAMES:
             self.home_pending = True
 
-        if self.home_pending and PRE_HOME is not None:
+        if self.home_pending and PRE_HOMING is not None:
             self.home_pending = False
             self._start_robot_task(
                 "Homing Dobot...",
-                lambda: self.robot_motions.home_safely(PRE_HOME),
+                lambda: self.robot_motions.home_safely(PRE_HOMING),
                 self._after_safe_home,
             )
             return
