@@ -1,6 +1,6 @@
 # Robot Tic-Tac-Toe
 
-Small Dobot Magician tic-tac-toe app with a Tk GUI, plus a calibration tool for setting board points.
+Small Dobot Magician tic-tac-toe app with a Tk GUI.
 
 ## Main programs
 
