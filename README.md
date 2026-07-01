@@ -10,10 +10,10 @@ Small Dobot Magician tic-tac-toe app with a Tk GUI, plus a calibration tool for 
 ## Project structure
 
 - `tictactoe.py`: GUI, game flow, robot task scheduling, mode switching.
-- `helpers/game_logic.py`: tic-tac-toe rules and minimax AI.
-- `helpers/robot_motion.py`: high-level robot motion routines for pick, place, cleanup, and homing.
+- `helpers/game_logic.py`: tic-tac-toe rules and minimax.
+- `helpers/robot_motion.py`: robot motion routines for pick, place, cleanup, and homing.
 - `helpers/load_calibration.py`: loads board and feeder calibration from JSON.
-- `dobot_python/`: low-level Dobot serial protocol wrapper.
+- `dobot_python/`: Dobot serial protocol wrapper.
 - `calib_points.json`: saved robot positions for pick/place, board corners, and `PRE_HOMING`.
 - `assets/`: board and icon images used by the GUI.
 - `documents/`: Dobot manuals and protocol references.
