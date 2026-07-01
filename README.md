@@ -16,7 +16,6 @@ Small Dobot Magician tic-tac-toe app with a Tk GUI, plus a calibration tool for 
 - `dobot_python/`: Dobot serial protocol wrapper.
 - `calib_points.json`: saved robot positions for pick/place, board corners, and `PRE_HOMING`.
 - `assets/`: board and icon images used by the GUI.
-- `documents/`: Dobot manuals and protocol references.
 
 ## Run
 
