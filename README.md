@@ -2,6 +2,8 @@
 
 Small Dobot Magician tic-tac-toe app with a Tk GUI.
 
+<img src="assets/dobot.jpg" alt="Dobot Magician" width="600">
+
 ## Main programs
 
 - `tictactoe.py`: main GUI game. Supports `PvP`, `PvAI`, and `AivAI`.
